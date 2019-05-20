@@ -1,17 +1,18 @@
 version: 2.1
 
-orbs:
-  win: sandbox/windows-tools@dev:preview
-
 jobs:
   windows-stuff:
+    machine:
+      image: windows-server-2019
+      docker_layer_caching: true  # this is expected to fail, just testing what the message is 
+    resource_class: windows.medium
     working_directory: c:\\\\cache
-    executor: win/preview-default
+    shell: powershell.exe -NoProfile -ExecutionPolicy Bypass
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true  # this is expected to fail, just testing what the message is  
-      - run: echo \"Welcome to Windows on CircleCI\"
-      - run: systeminfo
+    - run:
+        command: echo \"Welcome to Windows on CircleCI\"
+    - run:
+        command: systeminfo
 
 workflows:
   workflow:
