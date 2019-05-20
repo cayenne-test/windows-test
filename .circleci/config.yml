@@ -1,20 +1,14 @@
 version: 2.1
 
 jobs:
-  windows-stuff:
+  not-windows-stuff:
     machine:
-      image: windows-server-2019
-      docker_layer_caching: true  # this is expected to fail, just testing what the message is 
-    resource_class: windows.medium
-    working_directory: c:\\\\cache
-    shell: powershell.exe -NoProfile -ExecutionPolicy Bypass
+      docker_layer_caching: true  # this is expected to fail, just testing what the message is
     steps:
     - run:
-        command: echo \"Welcome to Windows on CircleCI\"
-    - run:
-        command: systeminfo
+        command: echo asdf
 
 workflows:
   workflow:
     jobs:
-      - windows-stuff
+      - not-windows-stuff
