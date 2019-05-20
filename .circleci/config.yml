@@ -8,6 +8,8 @@ jobs:
     working_directory: c:\\\\cache
     executor: win/preview-default
     steps:
+      - setup_remote_docker:
+      docker_layer_caching: true  # this is expected to fail, just testing what the message is  
       - run: echo \"Welcome to Windows on CircleCI\"
       - run: systeminfo
 
